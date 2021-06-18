@@ -1,0 +1,14 @@
+Install GraphViz
+		brew install graphviz
+	or	apt install graphviz
+
+Use it with gst-launch by setting the environment variable 
+	$ export GST_DEBUG_BIN_TO_DOT_FILE=/tmp
+
+Use it with a custom application by adding the following macro invocation at the point when the pipeline has been created and linked
+	GST_DEBUG_BIN_TO_DOT_FILE(pipeline, GST_DEBUG_GRAPH_SHOW_ALL, "<save_filename>")
+
+Visualise the graph by converting it to a pdf
+	$ dot -Tpdf <save_filename> > <save_filename>.pdf
+
+
