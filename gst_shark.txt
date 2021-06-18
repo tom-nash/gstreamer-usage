@@ -1,0 +1,10 @@
+Generate CTF files with the following params:
+		$ export GST_SHARK_LOCATION=<desired CTF output folder(Must already exist)> 
+		$ unset GST_SHARK_CTF_DISABLE
+An example pipeline:
+		$ GST_DEBUG="GST_TRACER:7" GST_TRACERS="cpuusage;proctime;framerate" gst-launch-1.0 videotestsrc ! videorate max-rate=15 ! fakesink	
+
+After generating file, in gst-shark/scripts/graphics/ run
+		$ gstshark-plot <path to the CTF output folder> -s <pdf|png>
+
+
