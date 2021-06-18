@@ -1,0 +1,1 @@
+gst-launch-1.0 filesrc location=~/NoWeapon_Civilian_BlueShirtTest_Standing_15m_Orbit.MP4 ! qtdemux ! h264parse ! omxh264dec ! nveglglessink

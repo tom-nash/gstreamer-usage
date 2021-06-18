@@ -1,0 +1,11 @@
+echo "Starting Multicast Pipeline";
+fileinput=${1?Error: no input given. Use runMulticast.sh <filename> <outputaddr>}
+
+outputaddr=${2:-244.10.10.10}
+outputport=${3:-15004}
+
+echo "Streaming $fileinput to $outputaddr at port $outputport"
+
+gst-launch-1.0 filesrc location=$fileinput ! qtdemux ! video/x-raw ! videoconvert ! \
+	x264enc noise-reduction=10000 tune=zerolatency bitrate=2500  speed-preset="fast" \
+	byte-stream=true threads=4 key-int-max=15 intra-refresh=true ! h264parse ! rtph264pay config-interval=5 ! udpsink host=$outputaddr port=$outputport auto-multicast=true
