@@ -1,0 +1,3 @@
+[submodule "gst-shark"]
+	path = gst-shark
+	url = https://github.com/RidgeRun/gst-shark/
