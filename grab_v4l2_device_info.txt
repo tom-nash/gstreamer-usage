@@ -1,1 +1,2 @@
+apt install v4l-utils
 v4l2-ctl --list-formats-ext -d /dev/video0 --set-ctrl bypass_mode=0

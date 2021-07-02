@@ -1,0 +1,1 @@
+gst-launch-1.0 v4l2src ! image/jpeg,width=1920,height=1080,framerate=30/1 ! jpegparse ! jpegdec ! omxh264enc qp-range=10,30:10,35:10,35 ! rtph264pay ! udpsink host=192.168.128.24 port=8554 sync=false
