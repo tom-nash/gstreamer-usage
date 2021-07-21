@@ -1,0 +1,1 @@
+gst-launch-1.0 filesrc location=/mnt/storage/pytorch-YOLOv4/data/giraffe.jpg ! jpegdec ! imagefreeze ! x264enc ! rtph264pay ! udpsink host=192.168.128.24 port=8554

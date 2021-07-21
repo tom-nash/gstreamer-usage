@@ -1,0 +1,28 @@
+#All that is required is fucking python and pip install cameratransform
+import cameratransform as ct
+#Set up the camera
+#We can supply the focal length or view_x_deg=61.617, view_y_deg=48.192,
+#We can supply the center of projection
+#ct.RectilinearProjection(focallength_px=3863.64, center_x_px=2304, center_y_px=1728, image=(4608, 3456))
+cam = ct.Camera(ct.RectilinearProjection(focallength_px=3729, image=(4608, 2592)), ct.SpatialOrientation(elevation_m=90, tilt_deg=30, heading_deg=0))
+
+#Set the gps position of the camera
+cam.setGPSpos(-66.66, 140.00, 90)
+
+#Get the space coordinates from the image
+#Z is the ground level relative to the origin (camera and set GPS pos)
+#We can supply a mesh for casting to
+#mesh (ndarray, optional) – project the image coordinates onto the mesh in space coordinates. The mesh is a list of M triangles, consisting of three 3D points each. Dimensions, (3x3), (Mx3x3)
+worldspace = cam.spaceFromImage([1968 , 2291], X=None, Y=None, Z=89, D=None, mesh=None)
+
+geospace = cam.gpsFromSpace(worldspace)
+
+print("World Space: ", worldspace, " Geo Space: ", geospace)
+
+#Multiple points
+#cam.spaceFromImage([[1968 , 2291], [1650, 2189]]) #Pass in a list of points.... fuck yeah
+
+#3D to Screen space but with points behind the camera
+#These will result in nans
+#cam.imageFromSpace([-4.17, -10.1, 0.])
+
