@@ -1,0 +1,1 @@
+AthenaAI -i v4l2:///dev/video0 -c /dev/video0 -n stream1 -p 8554 -o rtsp -W 640 -H 480 -N 2
